@@ -1,12 +1,13 @@
 version: "3.7"
 services:
   docker-heyu-mqtt:
-    image: dbrand666/docker-heyu-mqtt:latest
+    build: https://github.com/dbrand666/docker-heyu-mqtt.git#main
     container_name: docker-heyu-mqtt
     devices:
       # Map your serial port here
       - "/dev/ttyS0:/dev/ttyS0"
     environment:
+      - DEVICE=/dev/ttyS0
       # Recomended to set these to match the Linux U/GID
       - PUID=1000
       - PGID=1000
