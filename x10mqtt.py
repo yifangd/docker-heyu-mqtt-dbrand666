@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------
 #
-#  X10mqtt Home Assistant Addon
+#  X10mqtt gateway
 #
 #   This script allows for bridging between MQTT and X10.
 #
@@ -25,24 +25,24 @@ import subprocess
 import os
 
 try:
-  broker = os.environ['MQTTBROKER']
+  broker = os.environ['MQTT_HOST']
 except:
-  print("Must define MQTT Broker in configuration!")
+  print("Must define MQTT Host in configuration!")
   exit(1)
   
 try:
-  port = int(os.environ['MQTTPORT'])
+  port = int(os.environ['MQTT_PORT'])
 except:
   print("Must define MQTT port in configuration!")
   exit(1)
   
 try:
-  mqttuser = os.environ['MQTTUSER']
+  mqttuser = os.environ['MQTT_USER']
 except:
   mqttuser = ""
 
 try:
-  mqttpass = os.environ['MQTTPASS']
+  mqttpass = os.environ['MQTT_PASSWORD']
 except:
   mqttpass = ""
 
@@ -58,7 +58,7 @@ rcvihc = ""
 # Defaults to 'x10/cmd' if not defined
 #
 try:
-  cmdtopic = os.environ['MQTTCMDTOPIC']
+  cmdtopic = os.environ['CMD_TOPIC']
 except:
   cmdtopic = "x10/cmd"
 
@@ -70,14 +70,14 @@ except:
 # the switch/light state correct in Home Assistant.
 #
 try:
-  stattopic = os.environ['MQTTSTATTOPIC']
+  stattopic = os.environ['STAT_TOPIC']
 except:
   stattopic = "x10/stat"
 
 #
 # Whether a CM17A is in use
 #
-if os.getenv('CM17') != None:
+if os.getenv('USE_CM17') == 'true':
   cm17 = True
 else:
   cm17 = False

@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  docker-heyu-mqtt:
+    image: dbrand666/docker-heyu-mqtt:latest
+    container_name: docker-heyu-mqtt
+    devices:
+      # Map your serial port here
+      - "/dev/ttyS0:/dev/ttyS0"
+    environment:
+      # Recomended to set these to match the Linux U/GID
+      - PUID=1000
+      - PGID=1000
+      # Host and port for the MQTT server
+      - MQTT_HOST=
+      - MQTT_PORT=1883
+      # Login info
+      - MQTT_USER=mqtt
+      # $ and ' must be quoted by doubling them if present
+      - 'MQTT_PASSWORD='
+      - CMD_TOPIC=x10/cmd
+      - STAT_TOPIC=x10/stat
+      - USE_CM17=false
+    restart: always
+    

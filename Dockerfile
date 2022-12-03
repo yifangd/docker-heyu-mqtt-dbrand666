@@ -1,14 +1,7 @@
-ARG BUILD_FROM=hassioaddons/base:8.0.6
-# hadolint ignore=DL3006
+ARG BUILD_FROM=alpine:latest
 FROM ${BUILD_FROM}
 
-ENV LANG C.UTF-8
-
-# Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 # Install packages
-# hadolint ignore=DL3003
 
 RUN \
     apk add --no-cache --virtual .build-dependencies \
@@ -44,8 +37,8 @@ RUN \
 	&& rm -rf /opt/build/* 
 	
 # Copy data
-COPY data/x10mqtt.py /usr/local/bin/
-COPY data/run.sh /
+COPY x10mqtt.py /
+COPY run.sh /
 RUN chmod a+x /run.sh
 
 WORKDIR /

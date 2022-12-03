@@ -1,24 +1,19 @@
-# mmotley999 Add-Ons
+# A dockerized heyu to mqtt gateway
+
+## About
+
+The X10 to MQTT add-on provides a bidirectional gateway between an X10 CM11 or CM17A "Firecracker" serial interface and an MQTT server.
+
+Key features:
+
+- Translates incoming X10 commands received on a CM11a interface into MQTT commands.
+- Monitors for incoming MQTT commands and sends them via a CM11a or CM17a as X10 commands.
 
 ## Installation
 
-Add this repository to your Home Assistant installation by going to Supervisor -> Add-on Store, selecting the options icon (3 dots) in the upper-right, and click Repositories.
-
-Add the following URL:
-
-```txt
-https://github.com/mmotley999/hassos-addons
-```
-
-## Add-on Provided by this repository
-
-### x10mqtt
-
-A simple MQTT gateway for the X10 CM11a serial interface.  Supports turning on and off X10 devices using MQTT topics.
-
-### x10mqttbeta
-
-Beta/testing version of the x10mqtt repo.  Currently used for testing CM17A support.
+Copy  docker-compose.yml-template to docker-compose.yml and edit as needed.
+Launch it with `docker compose up -d`.
+View logs with `docker compose logs -f`
 
 ## Support
 
